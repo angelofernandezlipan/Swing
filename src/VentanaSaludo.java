@@ -30,8 +30,15 @@ public class VentanaSaludo extends JFrame {
 
         // Agregar listener
         botonSaludar.addActionListener(_ -> {
-            String nombre = campoTexto.getText();
-            etiquetaSaludo.setText("Hola, " + nombre + "!");
+            String nombre = campoTexto.getText().trim(); // El method trim() elimina espacios en blanco al inicio y al final
+
+            if (nombre.isEmpty()) {
+                // Muestra un cuadro de diálogo si el campo está vacío
+                JOptionPane.showMessageDialog(this, "Por favor ingresa tu nombre.");
+            } else {
+                // Si no está vacío, muestra el saludo
+                etiquetaSaludo.setText("¡Hola, " + nombre + "!");
+            }
         });
 
         // Agregar componentes a la ventana
