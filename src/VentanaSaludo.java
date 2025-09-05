@@ -1,32 +1,47 @@
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class VentanaSaludo {
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame("App de Saludo");
-        ventana.setSize(400, 200);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setLayout(null);
+public class VentanaSaludo extends JFrame {
 
-        JTextField campoTexto = new JTextField();
+    private final JTextField campoTexto;
+    private final JLabel etiquetaSaludo;
+
+    public VentanaSaludo() {
+        super("App de Saludo ICC490"); // Llama al constructor de JFrame
+
+        // Configuración de la ventana
+        this.setSize(400, 200);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
+
+        // Inicializar componentes
+        campoTexto = new JTextField();
         campoTexto.setBounds(50, 30, 200, 25);
 
         JButton botonSaludar = new JButton("Saludar");
         botonSaludar.setBounds(270, 30, 100, 25);
 
-        JLabel etiquetaSaludo = new JLabel("");
+        etiquetaSaludo = new JLabel("");
         etiquetaSaludo.setBounds(50, 80, 300, 25);
 
-        // Línea corregida:
+        // Agregar listener
         botonSaludar.addActionListener(e -> {
             String nombre = campoTexto.getText();
             etiquetaSaludo.setText("Hola, " + nombre + "!");
         });
 
-        ventana.add(campoTexto);
-        ventana.add(botonSaludar);
-        ventana.add(etiquetaSaludo);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+        // Agregar componentes a la ventana
+        this.add(campoTexto);
+        this.add(botonSaludar);
+        this.add(etiquetaSaludo);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            VentanaSaludo ventana = new VentanaSaludo();
+            ventana.setVisible(true);
+        });
     }
 }
