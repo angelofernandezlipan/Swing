@@ -11,52 +11,58 @@ public class VentanaSaludo extends JFrame {
     private final JButton botonSaludar;
 
     public VentanaSaludo() {
-        super("App de Saludo ICC490");
+        super("App de Saludo");
 
-        // Window configuration
+        // Configuración de la ventana
         this.setSize(400, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        this.getContentPane().setBackground(new Color(230, 230, 250)); // lavender color
+        this.getContentPane().setBackground(new Color(230, 230, 250)); // Color lavanda
 
-        // Initialize components
+        // Inicializar componentes
         campoTexto = new JTextField();
         campoTexto.setBounds(50, 30, 200, 25);
 
-        botonSaludar = new JButton("Saludar"); // Initialized here
+        botonSaludar = new JButton("Saludar");
         botonSaludar.setBounds(270, 30, 100, 25);
 
         etiquetaSaludo = new JLabel("");
         etiquetaSaludo.setBounds(50, 80, 300, 25);
         etiquetaSaludo.setFont(new Font("Arial", Font.BOLD, 14));
 
-        // Event handling
-        // Add KeyListener to the text field to handle the ENTER key
+        JButton botonLimpiar = new JButton("Limpiar");
+        botonLimpiar.setBounds(270, 60, 100, 25);
+
         campoTexto.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    botonSaludar.doClick(); // This now works because botonSaludar is a field
+                    botonSaludar.doClick(); // Simula el clic en el botón "Saludar"
                 }
             }
         });
 
-        // Add ActionListener to the button
         botonSaludar.addActionListener(_ -> {
             String nombre = campoTexto.getText().trim();
 
             if (nombre.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor ingresa tu nombre.");
             } else {
-                etiquetaSaludo.setText("¡Hola, " + nombre + "!");
+                Usuario usuario = new Usuario(nombre);
+                etiquetaSaludo.setText(usuario.getSaludo());
             }
         });
 
-        // Add components to the window
+        botonLimpiar.addActionListener(_ -> {
+            campoTexto.setText("");
+            etiquetaSaludo.setText("");
+        });
+
         this.add(campoTexto);
         this.add(botonSaludar);
         this.add(etiquetaSaludo);
+        this.add(botonLimpiar);
     }
 
     public static void main(String[] args) {
