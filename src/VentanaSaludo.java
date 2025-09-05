@@ -1,7 +1,6 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Font;
 
 public class VentanaSaludo extends JFrame {
 
@@ -27,9 +26,10 @@ public class VentanaSaludo extends JFrame {
 
         etiquetaSaludo = new JLabel("");
         etiquetaSaludo.setBounds(50, 80, 300, 25);
+        etiquetaSaludo.setFont(new Font("Arial", Font.BOLD, 14));
 
         // Agregar listener
-        botonSaludar.addActionListener(e -> {
+        botonSaludar.addActionListener(_ -> {
             String nombre = campoTexto.getText();
             etiquetaSaludo.setText("Hola, " + nombre + "!");
         });
