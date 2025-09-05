@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 public class VentanaSaludo extends JFrame {
 
@@ -15,6 +16,7 @@ public class VentanaSaludo extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color(230, 230, 250)); // Color lavender agregado.
 
         // Inicializar componentes
         campoTexto = new JTextField();
